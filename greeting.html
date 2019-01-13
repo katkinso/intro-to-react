@@ -13,18 +13,43 @@
 
     <script type="text/babel">
        class Greeting extends React.Component {
+
+        constructor(props){
+          super(props)
+          this.state = {
+             dinner: 'chicken'
+          }
+        }
+
+        numLettersInWord(word) {
+          return word.length
+        }
+
          render() {
            return (
              <div>
-               <h1>Hello {this.props.name}!</h1>
+               <h1>{this.props.defaultGreeting} {this.props.name}!</h1>
+               <p>Location: {this.props.location}</p>
+               <p>Phone Number: {this.props.phoneNumber}</p>
+               <p>Dinner is: {this.state.dinner}</p>
+               <p>The magic word is: {this.props.magicWord}</p>
+               <p>The number of letters in the magic word is: {this.numLettersInWord(this.props.magicWord)}</p>
              </div>
            );
          }
        }
+
+       const info = {
+           location: "San Francisco",
+           phoneNumber: "415.555.5555"
+       }
+
+       Greeting.defaultProps = {
+           defaultGreeting: "Hi"
+       }
  
        ReactDOM.render(
-
-         <Greeting name="Kate Atkinson"/>, document.getElementById('app')
+         <Greeting name="Kate Atkinson" location={info.location} phoneNumber={info.phoneNumber} magicWord="Abracadabra"/>, document.getElementById('app')
        );
     </script>
   </body>
