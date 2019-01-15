@@ -14,9 +14,23 @@
       class Counter extends React.Component {
         constructor(props) {
           super(props);
+          this.increment = this.increment.bind(this)
           this.state = {
             number: 1
           };
+        }
+
+        increment(event) {
+          console.log(this)
+          this.setState({
+            number: this.state.number + 1
+          })
+        }
+ 
+        decrement(event) {
+          this.setState({
+            number: Math.max(1, this.state.number - 1)
+          })
         }
 
         render() {
@@ -25,6 +39,8 @@
               <img src={this.props.image} alt="Bloc Logo" />
               <h2>Current program: {this.props.label}</h2>
               <h3>Current week: {this.state.number}</h3>
+              <button onClick={this.increment}>Increment</button>
+              <button onClick={this.decrement.bind(this)}>Decrement</button>
               <p>Current Date: {this.props.date.toLocaleDateString()}</p>
             </div>
           );
